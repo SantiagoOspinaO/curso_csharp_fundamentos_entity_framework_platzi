@@ -14,9 +14,13 @@ public class Tarea
   [Required]
   [MaxLength(200)]
   public string titulo { get; set; }
+
   public string descripcion { get; set; }
+
   public Prioridad prioridad { get; set; }
+
   public DateTime fechaCreacion { get; set; }
+  
   public virtual Categoria categoria { get; set; }
 
   [NotMapped]

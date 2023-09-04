@@ -9,8 +9,9 @@ public class Categoria
 
   [Required]
   public string nombre { get; set; }
-  
+
   [MaxLength(150)]
   public string descripcion { get; set; }
+  
   public virtual ICollection<Tarea> tareas { get; set; }
 }
