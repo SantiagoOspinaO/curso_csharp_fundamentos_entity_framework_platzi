@@ -5,14 +5,14 @@ namespace curso_fundamentos_entity_framework_platzi;
 
 public class Tarea
 {
-  [Key]
+  //[Key]
   public Guid tareaId { get; set; }
 
-  [ForeignKey("Categoria")]
+  //[ForeignKey("Categoria")]
   public Guid categoriaId { get; set; }
 
-  [Required]
-  [MaxLength(200)]
+  //[Required]
+  //[MaxLength(200)]
   public string titulo { get; set; }
 
   public string descripcion { get; set; }
@@ -23,7 +23,7 @@ public class Tarea
   
   public virtual Categoria categoria { get; set; }
 
-  [NotMapped]
+  //[NotMapped]
   public string resumen { get; set; }
 }
 

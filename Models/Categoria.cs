@@ -4,13 +4,13 @@ namespace curso_fundamentos_entity_framework_platzi;
 
 public class Categoria
 {
-  [Key]
+  //[Key]
   public Guid categoriaId { get; set; }
 
-  [Required]
+  //[Required]
   public string nombre { get; set; }
 
-  [MaxLength(150)]
+  //[MaxLength(150)]
   public string descripcion { get; set; }
   
   public virtual ICollection<Tarea> tareas { get; set; }
