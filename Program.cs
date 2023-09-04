@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // builder.Services.AddDbContext<TareasContext>(p => p.UseInMemoryDatabase("TareasDB"));
-builder.Services.AddSqlServer<TareasContext>("Data Source=DESKTOP-84HSK96\\SQLEXPRESS;Initial Catalog=TareasDB;user id=sa;password=Ospina0106*;Trusted_Connection=True;TrustServerCertificate=True");
+builder.Services.AddSqlServer<TareasContext>("Data Source=DESKTOP-84HSK96\\SQLEXPRESS;Initial Catalog=TareasDB;user id=sa;password=********;Trusted_Connection=True;TrustServerCertificate=True");
 
 var app = builder.Build();
 
