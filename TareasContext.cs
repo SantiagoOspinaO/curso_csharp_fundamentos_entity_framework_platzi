@@ -7,10 +7,7 @@ namespace curso_fundamentos_entity_framework_platzi
     public DbSet<Categoria> categorias { get; set; }
     public DbSet<Tarea> tareas { get; set; }
 
-    public TareasContext(DbContextOptions<TareasContext> options) : base(options)
-    {
-
-    }
+    public TareasContext(DbContextOptions<TareasContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -20,6 +17,7 @@ namespace curso_fundamentos_entity_framework_platzi
         categoria.HasKey(c => c.categoriaId);
         categoria.Property(c => c.nombre).HasMaxLength(150).IsRequired();
         categoria.Property(c => c.descripcion).HasMaxLength(150);
+        categoria.Property(c => c.peso);
       });
 
       modelBuilder.Entity<Tarea>(tarea =>
