@@ -11,7 +11,6 @@ namespace curso_fundamentos_entity_framework_platzi
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
       List<Categoria> categoriasInit = new List<Categoria>
       {
         new Categoria() { categoriaId = Guid.Parse("a9a12388-8c1a-49d5-9f6a-932fe1ea44a2"), nombre = "Actividades pendientes", peso = 20 },

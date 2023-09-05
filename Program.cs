@@ -17,4 +17,24 @@ app.MapGet("/dbconexion", ([FromServices] TareasContext dbContext) =>
   return Results.Ok("Base de datos en memoria: " + dbContext.Database.IsInMemory());
 });
 
+app.MapGet("/api/tareas", ([FromServices] TareasContext dbContext) =>
+{
+  return Results.Ok(dbContext.tareas);
+});
+
+app.MapGet("/api/tareas/filtro-uno", ([FromServices] TareasContext dbContext) =>
+{
+  return Results.Ok(dbContext.tareas.Include(t => t.categoria).Where(t => t.prioridad == Prioridad.Baja));
+});
+
+app.MapGet("/api/tareas/filtro-dos", ([FromServices] TareasContext dbContext) =>
+{
+  return Results.Ok(dbContext.tareas.Include(t => t.categoria).Where(t => t.estado == false));
+});
+
+app.MapGet("/api/tareas/filtro-tres", ([FromServices] TareasContext dbContext) =>
+{
+  return Results.Ok(dbContext.tareas.Include(t => t.categoria).Where(t => t.titulo == "Terminar de ver peliculas"));
+});
+
 app.Run();

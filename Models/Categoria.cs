@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace curso_fundamentos_entity_framework_platzi;
 
@@ -15,5 +16,6 @@ public class Categoria
 
   public int peso { get; set; }
   
+  [JsonIgnore] //para que no se serialice en el json, y en las consultas no haya problemas de referencias circular
   public virtual ICollection<Tarea> tareas { get; set; }
 }
