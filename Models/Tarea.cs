@@ -20,6 +20,8 @@ public class Tarea
   public Prioridad prioridad { get; set; }
 
   public DateTime fechaCreacion { get; set; }
+
+  public bool estado { get; set; }
   
   public virtual Categoria categoria { get; set; }
 

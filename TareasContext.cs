@@ -29,6 +29,7 @@ namespace curso_fundamentos_entity_framework_platzi
         tarea.Property(t => t.descripcion).HasMaxLength(250).IsRequired();
         tarea.Property(t => t.prioridad);
         tarea.Property(t => t.fechaCreacion);
+        tarea.Property(t => t.estado);
         tarea.Ignore(t => t.resumen);
       });
     }
