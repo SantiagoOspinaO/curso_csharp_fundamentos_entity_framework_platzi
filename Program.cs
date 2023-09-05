@@ -33,6 +33,23 @@ app.MapPost("/api/tareas", async ([FromServices] TareasContext dbContext, [FromB
   return Results.Created($"/api/tareas/{tarea.tareaId}", tarea);
 });
 
+app.MapPut("/api/tareas/{tareaId}", async ([FromServices] TareasContext dbContext, [FromRoute] Guid tareaId, [FromBody] Tarea tarea) =>
+{
+  var tareaEncontrada = await dbContext.tareas.FindAsync(tareaId);
+  if (tareaEncontrada != null)
+  {
+    tareaEncontrada.categoriaId = tarea.categoriaId;
+    tareaEncontrada.titulo = tarea.titulo;
+    tareaEncontrada.prioridad = tarea.prioridad;
+    tareaEncontrada.descripcion = tarea.descripcion;
+
+    await dbContext.SaveChangesAsync();
+    return Results.Ok(tareaEncontrada);
+  }
+
+  return Results.NotFound();
+});
+
 // app.MapGet("/api/tareas", async ([FromServices] HomeworkContext dbContext) => 
 // {
 // 		var tareas = await dbContext.homeworks.Include(p => p.Category).ToListAsync();
