@@ -50,6 +50,18 @@ app.MapPut("/api/tareas/{tareaId}", async ([FromServices] TareasContext dbContex
   return Results.NotFound();
 });
 
+app.MapDelete("/api/tareas/{tareaId}", async ([FromServices] TareasContext dbContext, [FromRoute] Guid tareaId) =>
+{
+  var tareaEncontrada = await dbContext.tareas.FindAsync(tareaId);
+  if (tareaEncontrada != null)
+  {
+    dbContext.Remove(tareaEncontrada);
+    await dbContext.SaveChangesAsync();
+    return Results.Ok($"Tarea con titulo: {tareaEncontrada.titulo}, se elimino exitosamente");
+  }
+  return Results.NotFound();
+});
+
 // app.MapGet("/api/tareas", async ([FromServices] HomeworkContext dbContext) => 
 // {
 // 		var tareas = await dbContext.homeworks.Include(p => p.Category).ToListAsync();
