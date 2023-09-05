@@ -19,8 +19,25 @@ app.MapGet("/dbconexion", ([FromServices] TareasContext dbContext) =>
 
 app.MapGet("/api/tareas", ([FromServices] TareasContext dbContext) =>
 {
-  return Results.Ok(dbContext.tareas);
+  return Results.Ok(dbContext.tareas.Include(t => t.categoria));
 });
+
+app.MapPost("/api/tareas", async ([FromServices] TareasContext dbContext, [FromBody] Tarea tarea) =>
+{
+  tarea.tareaId = Guid.NewGuid();
+  tarea.fechaCreacion = DateTime.Now;
+  await dbContext.tareas.AddAsync(tarea);
+
+  await dbContext.SaveChangesAsync();
+
+  return Results.Created($"/api/tareas/{tarea.tareaId}", tarea);
+});
+
+// app.MapGet("/api/tareas", async ([FromServices] HomeworkContext dbContext) => 
+// {
+// 		var tareas = await dbContext.homeworks.Include(p => p.Category).ToListAsync();
+// 		return Results.Ok(tareas);
+// });
 
 app.MapGet("/api/tareas/filtro-uno", ([FromServices] TareasContext dbContext) =>
 {
